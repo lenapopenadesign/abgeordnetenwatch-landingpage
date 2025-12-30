@@ -81,7 +81,8 @@ body {
 }
 
 .app {
-  width: 376px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   overflow-x: hidden;
 }
@@ -1093,4 +1094,372 @@ h3 {
 .footer-logo img {
   width: 100%;
   height: auto;
+}
+
+/* ============================================
+   Responsive - Tablet (576px+)
+   ============================================ */
+@media (min-width: 576px) {
+  /* Container */
+  .app {
+    padding: 0 24px;
+  }
+
+  /* Header */
+  .header {
+    padding: 20px 32px;
+  }
+
+  .header-logo {
+    width: 150px;
+    height: 90px;
+  }
+
+  /* Search Section */
+  .search-section {
+    padding: 72px 48px;
+  }
+
+  .search-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .search-form {
+    align-items: center;
+  }
+
+  .search-input-wrapper {
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .location-link {
+    margin: 0 auto;
+  }
+
+  .parliament-links {
+    justify-content: center;
+  }
+
+  /* Slider Section - Side by Side */
+  .slider-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .slider-image {
+    height: 100%;
+    min-height: 350px;
+  }
+
+  .slider-content {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  /* Newsletter Section - Side by Side */
+  .newsletter-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .newsletter-image {
+    height: 100%;
+    min-height: 350px;
+    order: 2;
+  }
+
+  .newsletter-content {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    order: 1;
+  }
+
+  /* Donation Section - Side by Side */
+  .donation-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .donation-image {
+    height: 100%;
+    min-height: 350px;
+  }
+
+  .donation-content {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  /* Values Section - Side by Side */
+  .values-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .values-image {
+    height: 100%;
+    min-height: 300px;
+    margin-top: 0;
+    order: 2;
+  }
+
+  .values-content {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    order: 1;
+  }
+
+  /* Q&A Section */
+  .qa-tabs {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  .qa-carousel {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .qa-card {
+    width: 350px;
+  }
+
+  .carousel-controls {
+    padding: 15px var(--spacing-2xl);
+  }
+
+  .popular-topics {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  /* Research Section */
+  .research-section > h2 {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .research-carousel {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .research-card {
+    width: 350px;
+  }
+
+  /* Campaigns Section */
+  .campaigns-section > h2 {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .campaigns-carousel {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .campaign-card {
+    width: 350px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--spacing-3xl) var(--spacing-2xl);
+  }
+
+  .footer-links {
+    gap: var(--spacing-xl);
+  }
+
+  .footer-logo {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* ============================================
+   Responsive - Desktop (993px+)
+   ============================================ */
+@media (min-width: 993px) {
+  /* Container */
+  .app {
+    padding: 0 40px;
+  }
+
+  /* Header */
+  .header {
+    padding: 24px 48px;
+  }
+
+  .header-logo {
+    width: 180px;
+    height: 108px;
+  }
+
+  /* Search Section */
+  .search-section {
+    padding: 96px 64px;
+  }
+
+  .search-section h1 {
+    font-size: 42px;
+    line-height: 52px;
+  }
+
+  .search-description {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  /* Slider Section */
+  .slider-image {
+    min-height: 450px;
+  }
+
+  .slider-content {
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+  }
+
+  .slider-content h2 {
+    font-size: var(--text-h2);
+  }
+
+  /* Newsletter Section */
+  .newsletter-image {
+    min-height: 450px;
+  }
+
+  .newsletter-content {
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+  }
+
+  .newsletter-content h2 {
+    font-size: var(--text-h2);
+  }
+
+  .newsletter-form {
+    flex-direction: row;
+  }
+
+  .newsletter-form .input-field {
+    flex: 1;
+  }
+
+  .newsletter-form .btn {
+    width: auto;
+    padding: 10px 32px;
+  }
+
+  /* Donation Section */
+  .donation-image {
+    min-height: 450px;
+  }
+
+  .donation-content {
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+  }
+
+  .donation-quote {
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+  }
+
+  /* Values Section */
+  .values-image {
+    min-height: 400px;
+  }
+
+  .values-content {
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+  }
+
+  .values-content h2 {
+    font-size: var(--text-h2);
+  }
+
+  /* Carousel Sections - Larger cards on desktop */
+  .qa-cards-wrapper,
+  .research-cards-wrapper,
+  .campaigns-cards-wrapper {
+    gap: var(--spacing-lg);
+  }
+
+  .qa-card {
+    width: 400px;
+  }
+
+  .research-card {
+    width: 400px;
+  }
+
+  .campaign-card {
+    width: 400px;
+  }
+
+  /* Q&A Section */
+  .qa-tabs {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+  }
+
+  .qa-carousel {
+    padding: 0 var(--spacing-3xl);
+  }
+
+  .carousel-controls {
+    padding: 20px var(--spacing-3xl);
+  }
+
+  .popular-topics {
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+  }
+
+  /* Research Section */
+  .research-section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .research-section > h2 {
+    padding: 0 var(--spacing-3xl);
+  }
+
+  .research-carousel {
+    padding: 0 var(--spacing-3xl);
+  }
+
+  /* Campaigns Section */
+  .campaigns-section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .campaigns-section > h2 {
+    padding: 0 var(--spacing-3xl);
+  }
+
+  .campaigns-carousel {
+    padding: 0 var(--spacing-3xl);
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--spacing-3xl);
+  }
+
+  .footer-links {
+    justify-content: center;
+    gap: var(--spacing-3xl);
+  }
+
+  .footer-column {
+    flex: 0 0 auto;
+    flex-direction: row;
+    gap: var(--spacing-xl);
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: var(--spacing-md);
+  }
+
+  .footer-logo {
+    max-width: 350px;
+  }
 }
