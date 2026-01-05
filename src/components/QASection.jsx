@@ -325,7 +325,7 @@ function QASection() {
     <section className="qa-section">
       <div className="qa-inner">
         <div className="qa-header">
-          <h2>Fragen & Antworten</h2>
+          <h2>Ausgewählte Fragen & Antworten</h2>
           <a href="#" className="btn btn-outline qa-header-btn">Alle Fragen & Antworten</a>
         </div>
 
