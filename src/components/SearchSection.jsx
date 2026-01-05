@@ -1,8 +1,85 @@
-import { useState } from 'react'
-import searchBg from '../assets/search-bg.png'
+import { useState, useRef, useEffect } from 'react'
+import bundestagBg from '../assets/bundestag-halftone.png'
+import crowdVideo from '../assets/1106575_1080p_4k_3840x2160.mp4'
 
 function SearchSection() {
   const [searchQuery, setSearchQuery] = useState('')
+  const video1Ref = useRef(null)
+  const video2Ref = useRef(null)
+
+  useEffect(() => {
+    const video1 = video1Ref.current
+    const video2 = video2Ref.current
+    if (!video1 || !video2) return
+
+    const fadeDuration = 1
+    video2.pause()
+    video2.currentTime = 0
+    video2.style.opacity = 0
+
+    const handleTimeUpdate = () => {
+      const timeLeft = video1.duration - video1.currentTime
+
+      if (timeLeft <= fadeDuration) {
+        // Start video2 when video1 is about to end
+        if (video2.paused) {
+          video2.currentTime = 0
+          video2.play()
+        }
+        // Crossfade: video1 fades out, video2 fades in
+        const progress = 1 - (timeLeft / fadeDuration)
+        video1.style.opacity = 1 - progress
+        video2.style.opacity = progress
+      }
+    }
+
+    const handleEnded = () => {
+      // Swap roles: video1 restarts and waits, video2 becomes primary
+      video1.currentTime = 0
+      video1.play()
+      video2.style.opacity = 1
+      video1.style.opacity = 0
+
+      // Swap the event listeners
+      video1.removeEventListener('timeupdate', handleTimeUpdate)
+      video2.addEventListener('timeupdate', handleTimeUpdate2)
+    }
+
+    const handleTimeUpdate2 = () => {
+      const timeLeft = video2.duration - video2.currentTime
+
+      if (timeLeft <= fadeDuration) {
+        if (video1.paused) {
+          video1.currentTime = 0
+          video1.play()
+        }
+        const progress = 1 - (timeLeft / fadeDuration)
+        video2.style.opacity = 1 - progress
+        video1.style.opacity = progress
+      }
+    }
+
+    const handleEnded2 = () => {
+      video2.currentTime = 0
+      video2.play()
+      video1.style.opacity = 1
+      video2.style.opacity = 0
+
+      video2.removeEventListener('timeupdate', handleTimeUpdate2)
+      video1.addEventListener('timeupdate', handleTimeUpdate)
+    }
+
+    video1.addEventListener('timeupdate', handleTimeUpdate)
+    video1.addEventListener('ended', handleEnded)
+    video2.addEventListener('ended', handleEnded2)
+
+    return () => {
+      video1.removeEventListener('timeupdate', handleTimeUpdate)
+      video1.removeEventListener('ended', handleEnded)
+      video2.removeEventListener('timeupdate', handleTimeUpdate2)
+      video2.removeEventListener('ended', handleEnded2)
+    }
+  }, [])
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -18,9 +95,27 @@ function SearchSection() {
   return (
     <section className="search-section">
       <div className="search-background">
-        <img src={searchBg} alt="" />
+        <img src={bundestagBg} alt="" className="bg-bundestag" />
+        <video
+          ref={video1Ref}
+          className="bg-video"
+          autoPlay
+          muted
+          playsInline
+        >
+          <source src={crowdVideo} type="video/mp4" />
+        </video>
+        <video
+          ref={video2Ref}
+          className="bg-video"
+          muted
+          playsInline
+        >
+          <source src={crowdVideo} type="video/mp4" />
+        </video>
       </div>
-      <div className="search-content">
+      <div className="search-inner">
+        <div className="search-content">
         <h1>Politiker:innen<br/>in deiner Nähe entdecken:</h1>
         <p className="search-description">
           Erfahre mehr über Kandidierende und Abgeordnete, stelle ihnen Fragen und lies ihre Antworten.
@@ -59,6 +154,7 @@ function SearchSection() {
             <a href="#">Landtage</a>
           </div>
         </form>
+        </div>
       </div>
     </section>
   )

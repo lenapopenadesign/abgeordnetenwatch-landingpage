@@ -16,8 +16,8 @@ function App() {
       <Header />
       <main>
         <SearchSection />
-        <QASection />
         <SliderSection />
+        <QASection />
         <NewsletterSection />
         <ResearchSection />
         <CampaignsSection />
