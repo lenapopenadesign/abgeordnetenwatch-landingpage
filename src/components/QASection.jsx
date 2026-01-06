@@ -1,111 +1,43 @@
-import { useState, useRef, useEffect } from 'react'
 import topicsBg from '../assets/topics-bg.png'
-import avatarDemasi from '../assets/avatar-demasi.jpg'
+import avatarMerz from '../assets/avatar-merz.jpg'
+import avatarHabeck from '../assets/avatar-habeck.jpg'
 import avatarFrei from '../assets/avatar-frei.jpg'
-import avatarKiesewetter from '../assets/avatar-kiesewetter.jpg'
-import avatarNotz from '../assets/avatar-notz.jpg'
-import avatarHeiligenstadt from '../assets/avatar-heiligenstadt.jpg'
-import avatarHardt from '../assets/avatar-hardt.jpg'
-import avatarBrandner from '../assets/avatar-brandner.jpg'
 
-// Unanswered questions
-const questionsData = [
+// 3 static Q&A cards
+const qaData = [
   {
     id: 1,
     asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Was halten Sie von einer Art "Roboter-Steuer" für Unternehmen, die massiv auf Automatisierung und KI setzen?',
-    reactions: 3,
+    date: '05.01.2026',
+    question: 'Ist die gewaltsame Entführung des Präsidenten eines souveränen Staates Ihrer Meinung nach mit dem Völkerrecht vereinbar?',
+    reactions: 12,
     politician: {
-      name: 'Fabio De Masi',
-      avatar: avatarDemasi,
-      party: 'BSW',
-      partyColor: '#FF8040',
+      name: 'Friedrich Merz',
+      avatar: avatarMerz,
+      party: 'CDU',
+      partyColor: '#000000',
       answerPending: true
     },
-    tags: ['Künstliche Intelligenz', 'Steuersystem']
+    tags: ['Völkerrecht', 'Außenpolitik']
   },
   {
     id: 2,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Thema Ghostjobs auf dem Arbeitsmarkt - wie kann so etwas rechtens sein?',
-    reactions: 5,
+    asker: 'Daniel W.',
+    date: '11.02.2025',
+    question: 'Warum laden wir nicht alle Superreichen ein, ihren Beitrag für unser Land zu leisten? Konkrete Projekte, für die sie sich mit Geld und Netzwerk uneigennützig engagieren?',
+    answer: 'Insbesondere bei der Konzentration von sehr hohen Vermögen gibt es auch im internationalen Vergleich große Handlungsnotwendigkeit in Deutschland.',
+    reactions: 8,
     politician: {
-      name: 'Thorsten Frei',
-      avatar: avatarFrei,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: true
+      name: 'Robert Habeck',
+      avatar: avatarHabeck,
+      party: 'GRÜNE',
+      partyColor: '#46962B',
+      answerPending: false
     },
-    tags: ['Arbeitsmarkt']
+    tags: ['Vermögenssteuer', 'Demokratie']
   },
   {
     id: 3,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Sehr geehrter Herr Kiesewetter, halten Sie an Ihrer im September 2025 geäußerten Position zur Verteidigungspolitik fest?',
-    reactions: 8,
-    politician: {
-      name: 'Roderich Kiesewetter',
-      avatar: avatarKiesewetter,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: true
-    },
-    tags: ['Verteidigungspolitik', 'Bundestag']
-  },
-  {
-    id: 4,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Was wurde aus der Klage vom 17.10.2023 vor dem Bundesverfassungsgericht?',
-    reactions: 4,
-    politician: {
-      name: 'Konstantin von Notz',
-      avatar: avatarNotz,
-      party: 'GRÜNE',
-      partyColor: '#46962B',
-      answerPending: true
-    },
-    tags: ['Bundesverfassungsgericht', 'Rechtsstaat']
-  },
-  {
-    id: 5,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Warum verweigert die Regierung ihre Pflicht gegenüber den gesetzlichen Krankenkassen?',
-    reactions: 6,
-    politician: {
-      name: 'Frauke Heiligenstadt',
-      avatar: avatarHeiligenstadt,
-      party: 'SPD',
-      partyColor: '#E3000F',
-      answerPending: true
-    },
-    tags: ['Krankenkasse', 'Bürgergeld']
-  },
-  {
-    id: 6,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Warum exportiert Deutschland noch immer Waffen an die Vereinigten Arabischen Emirate trotz deren Rolle im Sudan-Konflikt?',
-    reactions: 1,
-    politician: {
-      name: 'Jürgen Hardt',
-      avatar: avatarHardt,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: true
-    },
-    tags: ['Sudan', 'Waffenexporte', 'Außenpolitik']
-  }
-]
-
-// Answered questions
-const answersData = [
-  {
-    id: 101,
     asker: 'Bürger:in',
     date: '30.12.2025',
     question: 'Was bedeutet für Sie das wichtigste Gebot von Jesus Christus "Liebe deinen Nächsten wie dich selbst"?',
@@ -119,86 +51,6 @@ const answersData = [
       answerPending: false
     },
     tags: ['Christentum', 'Union']
-  },
-  {
-    id: 102,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Sollte der Staat nicht erst einmal seine "Schulden" bei den GKVs zahlen, bevor Beitragszahler mit Leistungskürzungen belastet werden?',
-    answer: 'Die Frage nach der "richtigen" Finanzierung der GKV wird seit September in der "Finanzkommission Gesundheit" diskutiert.',
-    reactions: 8,
-    politician: {
-      name: 'Thorsten Frei',
-      avatar: avatarFrei,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: false
-    },
-    tags: ['Gesetzliche Krankenversicherung']
-  },
-  {
-    id: 103,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Warum zuerst an Leistungsabbau denken und nicht zunächst mal Strukturveränderungen schaffen?',
-    answer: 'Aus meiner Sicht schließt das Eine das Andere doch gar nicht aus.',
-    reactions: 5,
-    politician: {
-      name: 'Thorsten Frei',
-      avatar: avatarFrei,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: false
-    },
-    tags: ['Gesundheitspolitik']
-  },
-  {
-    id: 104,
-    asker: 'Bürger:in',
-    date: '30.12.2025',
-    question: 'Ich habe eine Frage zur Kopplung des Renteneintrittsalters an die Zahl der geleisteten Arbeitsjahre.',
-    answer: 'Vor Weihnachten haben wir die Rentenkommission eingesetzt, die schon in sechs Monaten ihren Bericht vorlegen soll.',
-    reactions: 15,
-    politician: {
-      name: 'Thorsten Frei',
-      avatar: avatarFrei,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: false
-    },
-    tags: ['Rente']
-  },
-  {
-    id: 105,
-    asker: 'Bürger:in',
-    date: '29.12.2025',
-    question: 'Gibt es die AfD auch in meiner Stadt Neumünster?',
-    answer: 'Natürlich gibt es die.',
-    reactions: 3,
-    politician: {
-      name: 'Stephan Brandner',
-      avatar: avatarBrandner,
-      party: 'AfD',
-      partyColor: '#009EE0',
-      answerPending: false
-    },
-    tags: ['Kommunalpolitik', 'AfD']
-  },
-  {
-    id: 106,
-    asker: 'Bürger:in',
-    date: '29.12.2025',
-    question: 'Gesundheitssystem durch Wegfall von Leistungen günstiger machen - Was meinen Sie hier konkret?',
-    answer: 'Bis Ende März 2026 erwarten wir von den zehn Expertinnen und Experten einen ersten Bericht mit kurzfristigen Maßnahmen.',
-    reactions: 7,
-    politician: {
-      name: 'Thorsten Frei',
-      avatar: avatarFrei,
-      party: 'CDU',
-      partyColor: '#000000',
-      answerPending: false
-    },
-    tags: ['Gesundheitssystem']
   }
 ]
 
@@ -237,12 +89,12 @@ function QACard({ item }) {
             <div className="answer-status">
               {hasAnswer ? (
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5" fill={item.politician.partyColor}/>
+                  <circle cx="6" cy="6" r="5" fill="#3D3D3D"/>
                   <path d="M4 6l1.5 1.5L8 5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               ) : (
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="6" cy="6" r="5" stroke={item.politician.partyColor} strokeWidth="2"/>
+                  <circle cx="6" cy="6" r="5" stroke="#3D3D3D" strokeWidth="2"/>
                 </svg>
               )}
               <span>{hasAnswer ? 'Antwort' : 'Antwort ausstehend'}</span>
@@ -291,36 +143,6 @@ function QACard({ item }) {
 }
 
 function QASection() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const carouselRef = useRef(null)
-
-  const currentData = questionsData
-  const totalSlides = currentData.length
-
-  const scrollToSlide = (index) => {
-    if (carouselRef.current) {
-      const cardWidth = carouselRef.current.querySelector('.qa-card')?.offsetWidth || 312
-      const gap = 16
-      carouselRef.current.scrollTo({
-        left: index * (cardWidth + gap),
-        behavior: 'smooth'
-      })
-      setCurrentSlide(index)
-    }
-  }
-
-  const goNext = () => {
-    if (currentSlide < totalSlides - 1) {
-      scrollToSlide(currentSlide + 1)
-    }
-  }
-
-  const goPrev = () => {
-    if (currentSlide > 0) {
-      scrollToSlide(currentSlide - 1)
-    }
-  }
-
   return (
     <section className="qa-section">
       <div className="qa-inner">
@@ -329,37 +151,10 @@ function QASection() {
           <a href="#" className="btn btn-outline qa-header-btn">Alle Fragen & Antworten</a>
         </div>
 
-        <div className="qa-carousel-container">
-          <div className="qa-carousel" ref={carouselRef}>
-            <div className="qa-cards-wrapper">
-              {currentData.map(item => (
-                <QACard key={item.id} item={item} />
-              ))}
-            </div>
-          </div>
-          <div className="qa-carousel-fade"></div>
-        </div>
-
-        <div className="carousel-controls">
-          <button className="carousel-arrow carousel-arrow-prev" aria-label="Vorherige" onClick={goPrev}>
-            <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 2l-7 7 7 7" stroke="#463D8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <div className="carousel-dots">
-            {currentData.map((_, index) => (
-              <span
-                key={index}
-                className={`dot ${currentSlide === index ? 'active' : ''}`}
-                onClick={() => scrollToSlide(index)}
-              />
-            ))}
-          </div>
-          <button className="carousel-arrow carousel-arrow-next" aria-label="Nächste" onClick={goNext}>
-            <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 2l7 7-7 7" stroke="#463D8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+        <div className="qa-cards-grid">
+          {qaData.map(item => (
+            <QACard key={item.id} item={item} />
+          ))}
         </div>
 
         <div className="qa-footer-btn">

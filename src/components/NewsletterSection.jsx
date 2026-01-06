@@ -19,10 +19,10 @@ function NewsletterSection() {
         <div className="newsletter-content">
           <h2>Werde Politikinsider:in</h2>
           <ul className="newsletter-benefits">
-            <li>Exklusive Recherchen zu Lobbyismus, Parteispenden und Nebeneinkünften</li>
-            <li>Alles, was man über Großspenden an Parteien wissen muss</li>
-            <li>Die wichtigsten Fragen und Antworten von Abgeordneten</li>
-            <li>Der Newsletter erscheint wöchentlich und ist kostenlos</li>
+            <li><strong>Exklusive Recherchen</strong> zu Lobbyismus, Parteispenden und Nebeneinkünften</li>
+            <li>Alles, was man über <strong>Großspenden</strong> an Parteien wissen muss</li>
+            <li>Die <strong>wichtigsten Fragen und Antworten</strong> von Abgeordneten</li>
+            <li>Der Newsletter erscheint <strong>wöchentlich und ist kostenlos</strong></li>
           </ul>
           <form className="newsletter-form" onSubmit={handleSubmit}>
             <div className="input-field input-field-dark input-field-no-icon">
