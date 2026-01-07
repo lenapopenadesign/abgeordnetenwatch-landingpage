@@ -114,7 +114,7 @@ function QACard({ item }) {
         )}
         <div className="qa-tags">
           {item.tags.map((tag, index) => (
-            <span key={index} className="tag">{tag}</span>
+            <a key={index} href="#" className="tag tag-clickable">{tag}</a>
           ))}
         </div>
         <div className="qa-card-footer">
@@ -126,7 +126,7 @@ function QACard({ item }) {
             </button>
             <button className="action-button" aria-label="Teilen">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 5.333a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM4 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM12 14.667a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM5.727 8.94l4.553 2.787M10.273 4.273 5.727 7.06" stroke="#3D3D3D" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8.8 4.71693C3.09467 5.57457 0.821333 9.79928 0 14.0399C2.03867 11.0699 4.72267 9.71987 8.8 9.71987V13.1981L14.6667 7.2581L8.8 1.33398V4.71693Z" fill="#3D3D3D"/>
               </svg>
             </button>
           </div>

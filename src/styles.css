@@ -8,6 +8,7 @@
   --color-purple-light: #B5B1D0;
   --color-purple-ultra-light: #EDECF3;
   --color-orange: #F46B3B;
+  --color-orange-hover: #E6450D;
   --color-green: #4DBC26;
   --color-gray: #666666;
   --color-gray-dark: #3D3D3D;
@@ -1015,6 +1016,12 @@ h3 {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.politician-avatar:hover {
+  transform: scale(1.1);
 }
 
 .politician-details {
@@ -1090,6 +1097,16 @@ h3 {
   border: 1px solid var(--color-gray-dark);
   border-radius: 50%;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: var(--color-orange-hover);
+}
+
+.action-button:hover svg path {
+  stroke: var(--color-white);
+  fill: var(--color-white);
 }
 
 .details-link {
