@@ -1831,6 +1831,7 @@ h3 {
     background-color: transparent;
     margin-top: 0;
     padding: var(--spacing-xl) var(--spacing-2xl);
+    padding-left: clamp(var(--spacing-2xl), calc((100vw - 1200px) / 2 + var(--spacing-2xl)), 20vw);
     align-self: center;
   }
 
@@ -1868,6 +1869,7 @@ h3 {
     background-color: transparent;
     margin-top: 0;
     padding: var(--spacing-xl) var(--spacing-2xl);
+    padding-right: clamp(var(--spacing-2xl), calc((100vw - 1200px) / 2 + var(--spacing-2xl)), 20vw);
     align-self: center;
   }
 
@@ -2039,6 +2041,7 @@ h3 {
 
   .newsletter-content {
     padding: var(--spacing-2xl) var(--spacing-3xl);
+    padding-left: clamp(var(--spacing-3xl), calc((100vw - 1200px) / 2 + var(--spacing-3xl)), 20vw);
   }
 
   .newsletter-content h2 {
@@ -2065,6 +2068,7 @@ h3 {
 
   .donation-content {
     padding: var(--spacing-2xl) var(--spacing-3xl);
+    padding-right: clamp(var(--spacing-3xl), calc((100vw - 1200px) / 2 + var(--spacing-3xl)), 20vw);
   }
 
   .donation-quote {
